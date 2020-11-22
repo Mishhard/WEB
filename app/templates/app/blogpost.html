@@ -2,7 +2,7 @@
 {% block content %}
 {% load staticfiles %}
 <div class="row">
-  <h2> {{post_1.title}} </h2>
+  <h2> {{post_1.title}} </h2><br />
   <div class="blogpost_text"><p> {{post_1.content|linebreaksbr}}</p>
 {% if post_1.image and post_1.image.url != '/media/temp.jpg' %}
    <img src="{{post_1.image.url }}" alt="Изображение" width="300" height="200"/>

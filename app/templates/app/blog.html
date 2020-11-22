@@ -2,17 +2,20 @@
 
 {% block content %}
 
-<h2>{{ title }}</h2>
+<h2>{{ title }}</h2><br />
+<div class="row">
 {% for post in posts %}
-<hr/>
+
 <div class="comment_block">
 <h2> {{post.title}}</h2>
 <h4> {{post.posted}}</h4>
 <p> {{post.description}}</p>
 <p><b><a href="{% url 'blogpost' parametr=post.id %}"> Читать далее </a></b></p>
 </div>
+    <hr/>
+    <div></div>
 {% endfor %}
-
+</div>
 
 
 {% endblock %}
