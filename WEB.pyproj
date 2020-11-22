@@ -64,6 +64,9 @@
     <Folder Include="app\templates\app\Pool\migrations\" />
     <Folder Include="app\templates\app\Pool\templates\" />
     <Folder Include="app\templates\app\Pool\templates\Pool\" />
+    <Folder Include="static\" />
+    <Folder Include="static\app\" />
+    <Folder Include="static\app\content\" />
     <Folder Include="WEB\" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +109,16 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="static\app\content\banner1.png" />
+    <Content Include="static\app\content\banner2.png" />
+    <Content Include="static\app\content\banner3.png" />
+    <Content Include="static\app\content\bootstrap.css" />
+    <Content Include="static\app\content\bootstrap.min.css" />
+    <Content Include="static\app\content\logo.png" />
+    <Content Include="static\app\content\site.css" />
+    <Content Include="static\app\content\Каталог.png" />
+    <Content Include="static\app\content\Маркет.png" />
+    <Content Include="static\app\content\Минпромторг.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.html">

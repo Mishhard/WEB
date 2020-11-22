@@ -792,7 +792,7 @@ pre code {
         width: 25%
     }
     .col-md-4 {
-        width: 33.33333333333333%;
+        width: 25%;
     }
     .col-md-5 {
         width: 41.66666666666667%
@@ -3020,6 +3020,11 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
     height: 50px;
     margin-top:-15px;
 }
+    .navbar-brand:hover > img {
+       
+        box-shadow: 0 0 10px 0px rgb(230 105 16);
+        border-radius:100px
+    }
 .navbar-brand {
     float: left;
     height: 70px;
@@ -3304,9 +3309,18 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
     padding-left: 13px;
     padding-right:13px
 }
-    .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
-    color: #000;
-    background-color: transparent
+.navbar-inverse .navbar-nav > li:nth-child(even):hover > a, .navbar-inverse .navbar-nav > li:nth-child(odd) > a:focus {
+    box-shadow: 0 0 10px 0px rgb(230 105 16);
+    background-color: #fff;
+    color: orange;
+    border-radius:20px;
+}
+
+.navbar-inverse .navbar-nav > li:nth-child(odd):hover > a, .navbar-inverse .navbar-nav > li:nth-child(even) > a:focus {
+    box-shadow: 0 0 10px 0px rgb(0 45 189);
+    background-color: #fff;
+    color: blue;
+    border-radius: 20px; 
 }
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
     color: #fff;
@@ -5544,11 +5558,19 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             color: rgb(230 105 16)
         }
 
-        .comment_block {
+
+
+        .comment_block:nth-child(2n) {
             box-shadow: 0 0 10px 0px rgb(230 105 16);
             padding: 10px;
+            padding-left: 50px;
         }
 
+        .comment_block:nth-child(2n+1) {
+            box-shadow: 0 0 10px 0px rgb(0 45 189);
+            padding: 10px;
+            padding-left: 50px;
+        }
         .thing {
             width: 130px;
         }
