@@ -1,0 +1,3 @@
+C:\Users\Михаил\source\repos\WEB\WEB\obj\Debug\WEB.pyproj.CoreCompileInputs.cache
+C:\Users\Михаил\Desktop\WEB\WEB\obj\Debug\WEB.pyproj.CoreCompileInputs.cache
+C:\Users\Михаил\Documents\WEB\WEB\obj\Debug\WEB.pyproj.CoreCompileInputs.cache
