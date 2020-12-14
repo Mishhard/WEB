@@ -10,32 +10,55 @@ body {
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
+input[type="submit"],
+a[type="submit"],
+button[type="submit"],
 textarea,
 [type="password"],
+[type="email"],
 [type="password"],
 [type="text"],
-[type="submit"]{
+[type="submit"] {
     max-width: 280px;
     padding: 5px;
     border-radius: 10px;
-height:45px;
-margin:5px;
+    padding: 16px;
+    background-color: white;
+    border: 2px solid rgb(230 105 16);
+    border: 2px solid #86bbff;
+    border-radius: 10px;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #2a6496;
 }
 
+select {
+    max-width: 280px;
+    padding: 5px;
+    border-radius: 10px;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid rgb(230 105 16);
+    border-radius: 10px;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #2a6496;
+}
 *:focus {outline: none;}
 
-select, textarea,
+ textarea,
 [type="text"],
 [type="email"],
 [type="password"]{
 border: 1px solid rgb(230 105 16);
+padding: 20px;
 }
 
-[type="submit"]:hover{
-box-shadow: 0 0 10px 0px rgb(230 105 16);
-border: 4px solid #fff;
+[type="submit"]:hover {
+    box-shadow: 0 0 10px 0px rgb(230 105 16);
+    border: 6px solid #fff;
+    padding: 12px;
+    text-decoration: none
 }
 
 
@@ -89,19 +112,103 @@ margin-right:40px;
 width:100px;
 }
 
+h3 + a h3, a + h3 {
+    box-shadow: 0px -3px 1px 3px rgb(118 145 232);
+    /* width: auto; */
+    width: max-content;
+    padding: 10px;
+    margin-left: 0px !important;
+    margin-right: -7px;
+    background-color: rgb(134 187 255);
+    z-index: 5;
+    border-radius: 5px;
+    color: #fff;
+    margin-bottom: 0px;
+    display: inline-block;
+    position:relative;
+}
+    .h3h {
+    margin-left: 90px ;
+    box-shadow: 0px -3px 1px 3px rgb(118 145 232) !important;
+    width: max-content;
+    padding: 10px;
+    margin-right: 2px;
+    background-color: rgb(134 187 255) !important;
+    z-index: 4;
+    border-radius: 5px;
+    color: #fff;
+    margin-bottom: 0px;
+    display: inline-block;
+}
+
 .body-content > h1:nth-child(1), .body-content > h2:nth-child(1), .body-content > h3:nth-child(1) {
+    box-shadow: 0px -3px 1px 3px rgb(118 145 232);
+    /* width: auto; */
+    width: max-content;
+    padding: 10px;
+    margin-left: 90px;
+    margin-right: -7px;
+    background-color: rgb(134 187 255);
+    z-index: 5;
+    border-radius: 5px;
+    color: #fff;
+    margin-bottom: 0px;
+    display: inline-block;
+    position: relative;
+}
+
+.body-content > a h1:nth-child(1), .body-content > a h2:nth-child(1), .body-content > a h3:nth-child(1) {
     box-shadow: 0px -3px 1px 3px rgb(134 187 255);
     /* width: auto; */
     width: max-content;
     padding: 10px;
     margin-left: 90px;
-    margin-right: 20px;
+    margin-right: -7px;
+    background-color: rgb(118 145 232);
+    z-index: 4;
+    border-radius: 5px;
+    color: #fff;
+    margin-bottom: -21px;
+    display: inline-block;
+    position: relative;
+}
+
+.h33 {
+    box-shadow: 0px -3px 1px 3px rgb(134 187 255);
+    /* width: auto; */
+    width: max-content;
+    padding: 10px;
+    margin-left: 0px !important;
+    margin-right: 2px;
     background-color: rgb(118 145 232);
     z-index: 2;
     border-radius: 5px;
     color: #fff;
     margin-bottom: -21px;
+    display: inline-block;
+    position: relative;
+    z-index:3 !important;
 }
+
+.order {
+    box-shadow: 0px -3px 1px 3px rgb(241 161 105);
+    /* width: auto; */
+    width: 100%;
+    padding: 10px;
+    margin-left: 0px !important;
+    background-color: rgb(230 105 16);
+    z-index: 2;
+    border-radius: 5px;
+    margin-top: -20px;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    top: 0;
+    position: relative;
+    z-index: 3 !important;
+}
+
+
 
 .comment_block > h2, .blog_comment > h3{
     padding-top:0px;

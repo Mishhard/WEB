@@ -1,0 +1,38 @@
+{% extends "app/layout.html" %} 
+ 
+{% block content %} 
+{% load static %} 
+<h3 class="h3h">{{ title }}</h3> <a href="{% url 'completeorders' %}"><h3>Заказы</h3></a>
+         <div class="row"> 
+             {% for post in posts %}
+
+                   <div class="order_preview"> 
+                     {% for post_1 in posts_all %} 
+      
+                         {% if post_1.id == post.post_id %} 
+                             <h3>{{post_1.title}}</h3> 
+                             <h4>Цена: {{post_1.price}}₽</h4>
+                             {% if post.ready %}<h5>Статус: Оплачен</h5> 
+                     {% else %}<h5>Статус: Не оплачен</h5>{% endif %}
+                             <img class="card-img-top" src="{{post_1.image.url }}" alt="Изображение" width="100%" height="200" /> 
+                         {% endif %} 
+                     {% endfor %} 
+
+
+                     <h4>Количество: {{post.qnt}}</h4>
+                    <div> <a href="{% url 'oneless' pid=post.id %}" class="btn btn-default">‒</a>
+                     <a href="{% url 'onemore' nid=post.id %}" class="btn btn-default">+</a></div>
+                    
+                    <div> <a href="{% url 'delcart' did=post.id %}" type="submit" class="submit_cart">Удалить</a>
+                     <a href="{% url 'buy' bid=post.id %}" type="submit" class="submit_cart">Оплатить</a></div>
+                    </div> 
+                     
+
+ 
+
+
+             {% empty %}
+             <h2 class="nomore">Здесь пока ничего нет ¯ \ _ (ツ) _ / ¯</h2>
+             {% endfor %}
+         </div>
+{% endblock %}

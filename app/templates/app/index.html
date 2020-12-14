@@ -35,7 +35,7 @@
                     
                     Программные продукты от официального дистрибьютера!<br />
 
-                    <a class="btn btn-default" href="/#">
+                    <a class="btn btn-default" href="#row">
 
                         купить
 
@@ -58,7 +58,7 @@
                     Электронные
                     сертификаты от маркетплейса Ozon<br>
 
-                    <a class="btn btn-default" href="/#">
+                    <a class="btn btn-default" href="#row">
 
                         Купить
 
@@ -80,7 +80,7 @@
 
                     Обучающая программа<br />для желающих научиться<br /> промышлять сайтами<br />
 
-                    <a class="btn btn-default" href="/#">
+                    <a class="btn btn-default" href="#row">
 
                         Купить
 
@@ -112,114 +112,27 @@
     </a>
 
 </div>
-<a class="linktogood" name="row"></a>
 
+<a class="linktogood" name="row"></a>
+<br/>
 <div class="row">
-    <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-     <div class="col-md-4">
-        <h2>Товар</h2>
-        <p>
-            Описание
-        </p>
-        <a href="/" class="thing"> <img src="{% static 'app/content/logo.png' %}" alt="good" /> </a>
-        <p><a class="btn btn-default" href="#">В корзину &raquo;</a></p>
-    </div>
-    
+   <div class="media"> 
+       <div class="products"> 
+            {% for post in posts %} 
+                     <div class="product_preview"> 
+                        <div style="position:absolute;top:0;"> <img class="card-img-top" src="{{post.image.url }}" alt="Изображение" width="100%" height="200" /> 
+                         <h3>{{ post.title }}</h3> 
+                         <h4  style="text-align: center; color:gray;">{{ post.description }}</h4>
+                          </div>  
+                      
+                         <div style="position:absolute;bottom:0;"><h3>{{ post.price }}₽</h3><p><a href="{% url 'addtocart' id=post.id %}" type ="submit" class="submit">Подробнее</a></p></div>
+                     </div> 
+                 
+            {% endfor %}
+           </div> 
+        </div> 
+    </div>   
 </div>
+
 
 {% endblock %}

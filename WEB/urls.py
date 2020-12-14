@@ -25,6 +25,13 @@ urlpatterns = [
     path('video/', views.videopost, name='videopost'),
     path(r'^<int:parametr>/$', views.blogpost, name='blogpost'),
     path('regisration/', views.registration, name='registration'),
+    path('cart/', views.cart, name='cart'),
+    path(r'cart/^<id>\/$', views.addtocart, name='addtocart'),
+    path('buy/<bid>/', views.buy, name='buy'),
+    path('onemore/<nid>', views.onemore, name='onemore'),
+    path('oneless/<pid>', views.oneless, name='oneless'),
+    path('delcart/<did>/', views.delcart, name='delcart'),
+    path('orders/', views.completeorders, name='completeorders'),
     path('admin/', admin.site.urls),
     path('login/',
             LoginView.as_view

@@ -11,21 +11,25 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import models
 from .models import Blog
 from .models import Comment
+from .models import Product
+from .models import Orders
 from .forms import CommentForm
 from .forms import BlogForm
+from .forms import OrderForm
 
 
 def home(request):
-    """Renders the home page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/index.html',
-        {
-            'title':'',
-            'year':datetime.now().year,
-        }
-    )
+    posts = Product.objects.all() 
+ 
+    assert isinstance(request, HttpRequest) 
+    return render( 
+        request, 
+             'app/index.html', 
+                { 
+                    'posts': posts, 
+                    'year': datetime.now().year, 
+                } 
+        ) 
 
 def contact(request):
     """Renders the contact page."""
@@ -80,6 +84,7 @@ def pool(request):
         'app/pool.html',
         {
             'title':'Обратная связь',
+            'message':'Напишите нам, и мы обязательно ответим!',
             'form':form,
             'data':data,
             'year':datetime.now().year
@@ -182,7 +187,7 @@ def newpost(request):
         'app/newpost.html',
         {
             'blogform': blogform,
-            'title': 'Добавить статью блога',
+            'title': 'Добавить статью',
             'year':datetime.now().year,
         }
     )
@@ -198,3 +203,109 @@ def videopost(request):
             'year':datetime.now().year,
         }
     )
+ 
+def cart(request): 
+    posts = Orders.objects.filter(author = request.user, ready=False) 
+    posts_all = Product.objects.all() 
+ 
+    assert isinstance(request, HttpRequest) 
+    return render( 
+        request, 
+            'app/cart.html', 
+            { 
+                'title': 'Корзина', 
+                'posts': posts, 
+                'posts_all': posts_all, 
+                'year': datetime.now().year, 
+            } 
+        ) 
+ 
+def addtocart(request,id): 
+    test = Product.objects.filter(id=id) 
+
+    assert isinstance(request, HttpRequest) 
+    if request.method == "POST": 
+        orderform = OrderForm(request.POST, request.FILES) 
+        if orderform.is_valid(): 
+             order_f = orderform.save(commit=False) 
+             order_f.post_id = id 
+             order_f.posted = datetime.now() 
+             order_f.quantity = +1
+             order_f.author = request.user 
+             order_f.save() 
+             
+ 
+             return redirect('cart') 
+    else: 
+        orderform = OrderForm() 
+ 
+    return render( 
+     request, 
+         'app/addtocart.html', 
+         { 
+             'orderform': orderform, 
+             'posts': test, 
+             'title': 'Информация о товаре', 
+             'year': datetime.now().year, 
+         } 
+     )
+
+def buy(request,bid):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = bid)
+    query.ready = True
+    query.date = datetime.now() 
+    query.save()
+
+    return redirect('completeorders')
+
+def onemore(request,nid):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = nid)
+    query.qnt =   query.qnt + 1
+    query.save()
+
+    return redirect('cart')
+
+def oneless(request,pid):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = pid)
+    query.qnt =   query.qnt -  1
+    if query.qnt < 1:
+        query.qnt = 1
+   
+    query.save()
+
+    return redirect('cart')
+
+
+
+
+def delcart(request,did):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = did)
+    query.delete()
+
+    return redirect('cart')
+
+def completeorders(request): 
+    posts = Orders.objects.filter(author = request.user, ready=True) 
+    posts_all = Product.objects.all() 
+ 
+    assert isinstance(request, HttpRequest) 
+    return render( 
+        request, 
+            'app/orders.html', 
+            { 
+                'title': 'Заказы', 
+                'posts': posts, 
+                'posts_all': posts_all, 
+                'year': datetime.now().year, 
+            } 
+        ) 
+
+

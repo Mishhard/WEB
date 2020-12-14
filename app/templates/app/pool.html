@@ -2,8 +2,9 @@
 {% block content %}
 
 {% if form != None %}
-<h3>Оставьте обращение, и мы обязательно ответим!</h3><br>
+<a href="{% url 'contact' %}"><h3>Контакты</h3></a> <h3>Фидбэк</h3>
 <div class="row">
+    <h4>{{ message }}</h4><br />
     <form method="post">
         {% csrf_token %}
         <label for="{{ form.name.id_for_label }}">{{ form.name.label }}:</label>
