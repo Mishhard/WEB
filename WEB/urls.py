@@ -32,6 +32,13 @@ urlpatterns = [
     path('oneless/<pid>', views.oneless, name='oneless'),
     path('delcart/<did>/', views.delcart, name='delcart'),
     path('orders/', views.completeorders, name='completeorders'),
+    path('allorders/', views.allorders, name='allorders'),
+    path('onemoremanage/<nid>', views.onemoremanage, name='onemoremanage'),
+    path('onelessmanage/<pid>', views.onelessmanage, name='onelessmanage'),
+    path('buymanage/<bid>/', views.buymanage, name='buymanage'),
+    path('unbuymanage/<bid>/', views.unbuymanage, name='unbuymanage'),
+    path('delcartmanage/<did>/', views.delcartmanage, name='delcartmanage'),
+
     path('admin/', admin.site.urls),
     path('login/',
             LoginView.as_view

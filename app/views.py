@@ -260,6 +260,27 @@ def buy(request,bid):
 
     return redirect('completeorders')
 
+def buymanage(request,bid):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = bid)
+    query.ready = True
+    query.date = datetime.now() 
+    query.save()
+
+    return redirect('allorders')
+
+def unbuymanage(request,bid):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = bid)
+    query.ready = False
+    query.date = datetime.now() 
+    query.save()
+
+    return redirect('allorders')
+
+
 def onemore(request,nid):
     assert isinstance(request, HttpRequest)
 
@@ -268,6 +289,15 @@ def onemore(request,nid):
     query.save()
 
     return redirect('cart')
+
+def onemoremanage(request,nid):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = nid)
+    query.qnt =   query.qnt + 1
+    query.save()
+
+    return redirect('allorders')
 
 def oneless(request,pid):
     assert isinstance(request, HttpRequest)
@@ -281,6 +311,19 @@ def oneless(request,pid):
 
     return redirect('cart')
 
+def onelessmanage(request,pid):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = pid)
+    query.qnt =   query.qnt -  1
+    if query.qnt < 1:
+        query.qnt = 1
+   
+    query.save()
+
+    return redirect('allorders')
+
+
 
 
 
@@ -291,6 +334,14 @@ def delcart(request,did):
     query.delete()
 
     return redirect('cart')
+
+def delcartmanage(request,did):
+    assert isinstance(request, HttpRequest)
+
+    query = Orders.objects.get(id = did)
+    query.delete()
+
+    return redirect('allorders')
 
 def completeorders(request): 
     posts = Orders.objects.filter(author = request.user, ready=True) 
@@ -309,3 +360,19 @@ def completeorders(request):
         ) 
 
 
+def allorders(request):
+    """Renders the contact page."""
+    posts = Orders.objects.all()
+    posts_all = Product.objects.all() 
+
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/allorders.html',
+        {
+            'title':'Управление заказами',
+            'posts' : posts,
+            'posts_all' : posts_all,
+            'year':datetime.now().year,
+        }
+    )

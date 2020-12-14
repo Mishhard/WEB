@@ -1,0 +1,47 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+{% if  user.is_staff %} {% if not user.is_superuser %}<h3 class="h3h">{{ title }}</h3> {% endif %} {% endif %}
+<a href="{% url 'cart' %}"><h3>Корзина</h3></a> <a href="{% url 'completeorders' %}"><h3 class="h33">Заказы</h3></a>{% if user.is_superuser %}<h3 class="h3h">{{ title }}</h3>{% endif %}
+
+<div class="row">
+    {% for post in posts %}
+
+    <div class="order_preview">
+        {% for post_1 in posts_all %}
+
+        {% if post_1.id == post.post_id %}
+        <h3>{{post_1.title}}</h3>
+        <h4>Цена: {{post_1.price}}₽</h4>
+        <h5>Пользователь: {{post.author}}</h5>
+        {% if post.ready %}<h5>Оплачен {{ post.date }}</h5>
+        {% else %}<h5>Нет оплаты</h5>{% endif %}
+        <img class="card-img-top" src="{{post_1.image.url }}" alt="Изображение" width="100%" height="200" />
+        {% endif %}
+        {% endfor %}
+
+
+        <h4>Количество: {{post.qnt}}</h4>
+        <div>
+            <a href="{% url 'onelessmanage' pid=post.id %}" class="btn btn-default">‒</a>
+            <a href="{% url 'onemoremanage' nid=post.id %}" class="btn btn-default">+</a>
+        </div>
+
+        <div>
+            <a href="{% url 'delcartmanage' did=post.id %}" type="submit" class="submit_cart">Удалить</a>
+            {% if post.ready %} <a href="{% url 'unbuymanage' bid=post.id %}" type="submit" class="submit_cart">Нет оплаты</a>
+            {% else %} <a href="{% url 'buymanage' bid=post.id %}" type="submit" class="submit_cart">Оплатить</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+
+
+    {% empty %}
+    <h2 class="nomore">Здесь пока ничего нет ¯ \ _ (ツ) _ / ¯</h2>
+    {% endfor %}
+</div>
+{% endblock %}

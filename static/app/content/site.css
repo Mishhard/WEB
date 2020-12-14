@@ -30,6 +30,7 @@ textarea,
     vertical-align: middle;
     text-decoration: none;
     color: #2a6496;
+    width:max-content;
 }
 
 select {

@@ -2,7 +2,7 @@
  
 {% block content %} 
 {% load static %} 
-<h3 class="h3h">{{ title }}</h3> <a href="{% url 'completeorders' %}"><h3>Заказы</h3></a>
+<h3 class="h3h">{{ title }}</h3> <a href="{% url 'completeorders' %}"><h3>Заказы</h3></a> {% if user.is_superuser %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a>{% endif %}
          <div class="row"> 
              {% for post in posts %}
 

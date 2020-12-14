@@ -34,9 +34,15 @@
                     {% if not user.is_authenticated %}
                     <li><a href="{% url 'registration' %}">Регистрация</a></li>
                     {% endif %}
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated %} {% if not user.is_staff %}
+                    <li><a href="{% url 'cart' %}">Корзина</a></li>
+                    {% endif %}{% endif %}
+                    {% if  user.is_superuser %}
                     <li><a href="{% url 'cart' %}">Корзина</a></li>
                     {% endif %}
+                    {% if  user.is_staff %} {% if not user.is_superuser %}
+                    <li><a href="{% url 'allorders' %}">Управление заказами</a></li>
+                    {% endif %}{% endif %}
                 </ul>
                 {% include 'app/loginpartial.html' %}
             </div>
