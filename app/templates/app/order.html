@@ -22,17 +22,17 @@
                              <h3>{{post_1.title}}</h3> 
                              {% if post.ready %}<h5>Статус: Оплачен</h5> 
                      {% else %}<h5>Статус: Не оплачен</h5>{% endif %}
-                             <img class="card-img-top" src="{{post_1.image.url }}" alt="Изображение"  /> 
+                             <img class="card-img-top1" src="{{post_1.image.url }}" alt="Изображение"  /> 
                          {% endif %} 
                      {% endfor %} 
-            <a href="{% url 'payed' bid=post.id %}" type="submit">Я оплатил</a>
         {% endfor %}
 
         {{ orderform.as_p }}
-       <a href="{% url 'home' %}" type="submit">Вернуться</a>
+
+
+      <br>    <h3> Email: {{bob.email}} </h3> <br> <a href="{% url 'allorders' %}" type="submit">Вернуться</a> 
             <div class="blog_comment">
 
-    <h7> {{bob.email}} </h7>
  
 
 </div>

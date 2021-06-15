@@ -578,6 +578,7 @@ def order(request,did):
     assert isinstance(request, HttpRequest)
     posts = Orders.objects.filter(id = did) 
     posts_all = Catalog.objects.all 
+    price_sum = sum(post.qnt for post in posts)
     query = Orders.objects.get(id = did)
     product = Catalog.objects.get(id = query.post_id)
     market = query.author.id
@@ -621,7 +622,6 @@ def delcartmanage(request,did):
 def completeorders(request): 
     posts = Orders.objects.filter(author = request.user, ready=True) 
     posts_all = Catalog.objects.all() 
- 
     assert isinstance(request, HttpRequest) 
     return render( 
         request, 
@@ -639,7 +639,7 @@ def allorders(request):
     """Renders the contact page."""
     posts = Orders.objects.all()
     posts_all = Catalog.objects.all() 
-
+    price_sum = sum(post.qnt for post in posts)
     assert isinstance(request, HttpRequest)
     return render(
         request,

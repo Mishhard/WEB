@@ -120,16 +120,16 @@
        <div class="products"> 
             {% for post in posts %} 
                      <div class="product_preview"> 
-                        <div style="position:absolute;top:0;"> <img class="card-img-top" src="{{post.image.url }}" alt="Изображение" width="100%" height="200" /> 
+                        <div style="position:absolute;top:0;"> <img class="card-img-top" src="{{post.image.url }}" alt="Изображение" width="100%" height="200" /> </div><br><br><br><br><br>
                          <h3>{{ post.title }}</h3> 
                          <h4  style="text-align: center; color:gray;">{{ post.description }}</h4>
                          <h4  style="text-align: center; color:gray;">Осталось:{{ post.quantity }}</h4>
                   {% if user.is_superuser %}   <div> <a href="{% url 'onelessproductmanage' pid=post.id %}" class="btn btn-default">‒</a>
                      <a href="{% url 'onemoreproductmanage' pid=post.id %}" class="btn btn-default">+</a></div>
-                          </div>   {% endif %}
+                            {% endif %}
  {% if user.is_provider %}   <div> <a href="{% url 'onelessproduct' pid=post.id %}" class="btn btn-default">‒</a>
                      <a href="{% url 'onemoreproduct' pid=post.id %}" class="btn btn-default">+</a></div>
-                          </div>   {% endif %}
+                            {% endif %}
                       
                          <div style="position:absolute;bottom:0;"><h3>{{ post.price }}₽</h3><a href="{% url 'addtocart' id=post.id %}" type ="submit" class="submit">Подробнее</a>{% if user.is_provider %}
 <a href="{% url 'delproductmanage' did=post.id %}" type="submit" class="submit_cart">Удалить</a>{% endif %}{% if user.is_staff %}
@@ -139,10 +139,15 @@
                      </div> 
                  
             {% endfor %}
-<div class="product_preview"><a href="{% url 'newproduct' %}">
+ {% if user.is_provider %}<div class="product_preview"><a href="{% url 'newproduct' %}">
 <h1>+</h1>
 </a></div>
-           </div> 
+           </div>  {% endif %}
+
+ {% if user.is_superuser %}<div class="product_preview"><a href="{% url 'newproduct' %}">
+<h1>+</h1>
+</a></div>
+           </div>  {% endif %}
         </div> 
     </div>   
 </div>

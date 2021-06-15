@@ -4,7 +4,7 @@
 {% load static %}
 {% if  user.is_staff %} {% if not user.is_superuser %}<h3 class="h3h">{{ title }}</h3> {% endif %} {% endif %}
 {% if user.is_superuser %}<a href="{% url 'cart' %}"><h3>Корзина</h3></a> <a href="{% url 'completeorders' %}"><h3 class="h33">Заказы</h3></a><h3 class="h3h">{{ title }}</h3><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>{% endif %}
-{% if user.provider %}<a href="{% url 'cart' %}"><h3>Корзина</h3></a> <a href="{% url 'completeorders' %}"><h3 class="h33">Заказы</h3></a><h3 class="h3h">{{ title }}</h3><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>{% endif %}
+{% if user.is_provider %}<a href="{% url 'cart' %}"><h3>Корзина</h3></a> <a href="{% url 'completeorders' %}"><h3 class="h33">Заказы</h3></a><h3 class="h3h">{{ title }}</h3><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>{% endif %}
 
 <div class="row">
     {% for post in posts %}
