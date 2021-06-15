@@ -10,8 +10,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-
-
 class Blog(models.Model):
     title = models.CharField(max_length = 100, unique_for_date = "posted", verbose_name = "Заголовок")
     description = models.TextField(verbose_name = "Краткое содержание")
@@ -48,19 +46,22 @@ class Comment(models.Model):
         verbose_name_plural = "Комментарии к статьям блога"
         ordering = ["-date"]
 
+
 admin.site.register(Blog)
 admin.site.register(Comment)
 
-class Product(models.Model): 
+class Catalog(models.Model): 
      title = models.CharField(max_length = 100, unique_for_date = "posted", verbose_name = "Наименование") 
      description = models.TextField(verbose_name = "Описание")
      quantity = models.IntegerField(verbose_name = "Количество")
      price = models.IntegerField(default = 0, verbose_name = "Цена")
      posted = models.DateTimeField(default = datetime.now(), db_index = True, verbose_name = "Опубликована") 
      image = models.FileField(default = 'temp.jpg', verbose_name ="Путь к изображению")
+     author = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL, verbose_name = "Автор")
+     stonks = models.IntegerField(default=0, verbose_name = "Цена")
  
      def get_absolute_url(self): 
-        return reverse("catalog", args=[str(self.id)]) 
+        return reverse("Catalog", args=[str(self.id)]) 
  
      def _str_(self): 
         return self.title 
@@ -70,13 +71,15 @@ class Product(models.Model):
          ordering = ["-posted"] 
          verbose_name = "Товар" 
          verbose_name_plural = "Товары" 
- 
+
 class Orders(models.Model): 
      date = models.DateTimeField(default = datetime.now(), db_index = True, verbose_name = "Дата") 
      author = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name = "Покупатель") 
-     post = models.ForeignKey(Product, on_delete = models.CASCADE, verbose_name = "Покупка") 
-     ready = models.BooleanField(default=False, verbose_name = "Статус") 
-     qnt = models.IntegerField(default=1, verbose_name = "Цена")
+     post = models.ForeignKey(Catalog, on_delete = models.CASCADE, verbose_name = "Покупка") 
+     ready = models.BooleanField(default=False, verbose_name = "Оплачен") 
+     on_processing = models.BooleanField(default=False, verbose_name = "В обработке") 
+     qnt = models.IntegerField(default=1, verbose_name = "Количество")
+
 
      def _str_(self): 
         return 'Покупка %s от %s' % (self.author, self.post) 
@@ -87,5 +90,21 @@ class Orders(models.Model):
          verbose_name = "Покупка" 
          verbose_name_plural = "Покупки"
 
-admin.site.register(Product) 
+class Requisites(models.Model): 
+     provider = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL, verbose_name = "Поставщик") 
+     bank = models.TextField(verbose_name = "Банк")
+     bik = models.TextField(verbose_name = "БИК")
+     kpp = models.TextField(verbose_name = "КПП")
+     account = models.TextField(verbose_name = "Счет") 
+
+ 
+     class Meta: 
+         db_table = "requisites" 
+         ordering = ["-id"] 
+         verbose_name = "Реквизиты" 
+         verbose_name_plural = "Реквизиты" 
+
+admin.site.register(Catalog) 
 admin.site.register(Orders)
+admin.site.register(Requisites)
+

@@ -2,7 +2,7 @@
  
 {% block content %} 
 {% load static %} 
-<a href="{% url 'cart' %}"><h3>Корзина</h3></a> <h3>Заказы</h3>{% if user.is_superuser %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a>{% endif %}
+<a href="{% url 'cart' %}"><h3>Корзина</h3></a> <h3>Заказы</h3>{% if user.is_superuser %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>{% endif %}{% if user.is_provider %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>{% endif %}
 
          <div class="row"> 
              {% for post in posts %}

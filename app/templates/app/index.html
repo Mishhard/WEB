@@ -1,7 +1,7 @@
 {% extends "app/layout.html" %}
 {% load staticfiles %}
 {% block content %}
-
+{% load static %} 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
 
     <ol class="carousel-indicators">
@@ -123,12 +123,25 @@
                         <div style="position:absolute;top:0;"> <img class="card-img-top" src="{{post.image.url }}" alt="Изображение" width="100%" height="200" /> 
                          <h3>{{ post.title }}</h3> 
                          <h4  style="text-align: center; color:gray;">{{ post.description }}</h4>
-                          </div>  
+                         <h4  style="text-align: center; color:gray;">Осталось:{{ post.quantity }}</h4>
+                  {% if user.is_superuser %}   <div> <a href="{% url 'onelessproductmanage' pid=post.id %}" class="btn btn-default">‒</a>
+                     <a href="{% url 'onemoreproductmanage' pid=post.id %}" class="btn btn-default">+</a></div>
+                          </div>   {% endif %}
+ {% if user.is_provider %}   <div> <a href="{% url 'onelessproduct' pid=post.id %}" class="btn btn-default">‒</a>
+                     <a href="{% url 'onemoreproduct' pid=post.id %}" class="btn btn-default">+</a></div>
+                          </div>   {% endif %}
                       
-                         <div style="position:absolute;bottom:0;"><h3>{{ post.price }}₽</h3><p><a href="{% url 'addtocart' id=post.id %}" type ="submit" class="submit">Подробнее</a></p></div>
+                         <div style="position:absolute;bottom:0;"><h3>{{ post.price }}₽</h3><a href="{% url 'addtocart' id=post.id %}" type ="submit" class="submit">Подробнее</a>{% if user.is_provider %}
+<a href="{% url 'delproductmanage' did=post.id %}" type="submit" class="submit_cart">Удалить</a>{% endif %}{% if user.is_staff %}
+<a href="{% url 'delproductmanage' did=post.id %}" type="submit" class="submit_cart">Удалить</a>{% endif %}</div>
+                         
+
                      </div> 
                  
             {% endfor %}
+<div class="product_preview"><a href="{% url 'newproduct' %}">
+<h1>+</h1>
+</a></div>
            </div> 
         </div> 
     </div>   

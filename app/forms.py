@@ -6,9 +6,12 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from django.contrib.auth.models import User
 from .models import Comment
 from .models import Blog
 from .models import Orders
+from .models import Catalog
+
 
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
@@ -36,6 +39,14 @@ class AnketaForm(forms.Form):
     message = forms.CharField(label='Суть обращения',
                                 widget=forms.Textarea(attrs={'rows':12,'cols':20}))
 
+class RequisitesForm(forms.Form):
+    bank = forms.CharField(label='Банк', min_length=2, max_length=100)
+    bik = forms.CharField(label='БИК',  min_length=2, max_length=100)
+    kpp = forms.CharField(label='КПП',  min_length=2, max_length=100)
+    account = forms.CharField(label='Счет',  min_length=2, max_length=100)
+
+class EmailForm(forms.Form):
+    email = forms.EmailField(label='E-mail', min_length=7)
 class BlogForm (forms.ModelForm):
     class Meta:
         model = Blog        
@@ -46,3 +57,9 @@ class OrderForm (forms.ModelForm):
     class Meta: 
         model = Orders 
         fields = ()
+
+class ProductForm (forms.ModelForm):
+    class Meta:
+        model = Catalog
+        fields = ('title','description','quantity','image','price')
+        labels = {'title': "Заголовок",'description': "Краткое содержание",'quantity': "Количество",'price': "Цена",'image': "Изображение"}

@@ -5,6 +5,7 @@
     <Name>WEB</Name>
     <RootNamespace>WEB</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -70,19 +71,26 @@
     <Folder Include="WEB\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\finances.html" />
+    <Content Include="app\templates\app\order.html" />
+    <Content Include="app\templates\app\paying.html" />
+    <Content Include="app\templates\app\Nope.html" />
     <Content Include="app\templates\app\blog.html" />
     <Content Include="app\templates\app\cart.html" />
     <Content Include="app\templates\app\links.html" />
+    <Content Include="app\templates\app\newproduct.html" />
     <Content Include="app\templates\app\newpost.html" />
     <Content Include="app\templates\app\orders.html" />
     <Content Include="app\templates\app\pool.html" />
     <Content Include="app\templates\app\addtocart.html" />
     <Content Include="app\templates\app\Pool\templates\Pool\index.html" />
     <Content Include="app\templates\app\pool2.html" />
+    <Content Include="app\templates\app\registration_provider.html" />
     <Content Include="app\templates\app\registration.html" />
     <Content Include="app\templates\app\blogpost.html" />
     <Content Include="app\templates\app\videopost.html" />
     <Content Include="app\templates\app\allorders.html" />
+    <Content Include="libman.json" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />

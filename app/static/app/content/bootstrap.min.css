@@ -122,12 +122,11 @@ button, input {
 button, select {
     text-transform: none
 }
-    button[type="button"], html input[type="button"], a[type="submit"], input[type="reset"], input[type="submit"] {
+    button[type="button"], html input[type="button"], a[type="submit"], input[type="reset"], input[type="submit"], input[type="number"] {
         cursor: pointer;
         -webkit-appearance: button;
         border: 2px solid rgb(230 105 16);
         background-color: #fff;
-
         margin: 5px;
         padding: 5px;
         border-radius: 50px;
@@ -5597,12 +5596,16 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             box-shadow: 0 0 10px 0px rgb(0 45 189);
             width: 27%;
             margin: 30px;
-            height: 400px;
+            height: 460px;
             float: left;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+        }
+
+        .card-img-top1 {
+            height:300px;
         }
 
         .product_preview {
@@ -5615,11 +5618,24 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             align-items: center;
             flex-direction: column;
             text-align: center;
-            position:relative;
+            position: relative;
+        }
+
+        .product_preview2 {
+            box-shadow: 0 0 10px 0px rgb(0 45 189);
+            width: 24%;
+            height: 420px;
+            margin: 0px 0px 5% 7%;
+            float: top;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
         }
 
         .products {
-
         }
 
         .btn round {
@@ -5656,7 +5672,15 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             color: rgb(246 178 130);
         }
 
-        .submit_cart{
-            width:110px;
-            text-align:center;
+        .submit_cart {
+            width: 110px;
+            text-align: center;
+        }
+
+        .product_preview h1 {
+            font-size: 360px;
+        }
+
+        .product_preview a {
+            text-decoration: none;
         }
