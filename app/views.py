@@ -592,7 +592,7 @@ def order(request,did):
                 'bob' : bob,
               'posts': posts, 
               'posts_all': posts_all,  
-             'title': 'Оплата заказа №', 
+             'title': 'Заказ №', 
             'year': datetime.now().year, 
             } 
            ) 
@@ -639,6 +639,7 @@ def allorders(request):
     """Renders the contact page."""
     posts = Orders.objects.all()
     posts_all = Catalog.objects.all() 
+    me = request.user
     price_sum = sum(post.qnt for post in posts)
     assert isinstance(request, HttpRequest)
     return render(
@@ -647,6 +648,7 @@ def allorders(request):
         {
             'title':'Управление заказами',
             'posts' : posts,
+            'me' : me,
             'posts_all' : posts_all,
             'year':datetime.now().year,
         }

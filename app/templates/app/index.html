@@ -120,10 +120,11 @@
        <div class="products"> 
             {% for post in posts %} 
                      <div class="product_preview"> 
-                        <div style="position:absolute;top:0;width:100%;height:200px;overflow: hidden;"> <img class="card-img-top" src="{{post.image.url }}" alt="Изображение"  /> <img class="card-img-top2" src="{{post.image.url }}" alt="Изображение"  /> </div>
-                         <div style="position:absolute;bottom:0;"><h3>{{ post.title }}</h3> 
+                        <div style="top:0;width:100%;height:200px;display: flex;
+  align-items: center;overflow: hidden;"> <img class="card-img-top" src="{{post.image.url }}" alt="Изображение"  /> <img class="card-img-top2" src="{{post.image.url }}" alt="Изображение"  /> </div>
+                         <div style="height:131px;"><h3>{{ post.title }}</h3> 
                          <h4  style="text-align: center; color:gray;">{{ post.description }}</h4>
-                         <h4  style="text-align: center; color:gray;">Осталось:{{ post.quantity }}</h4>
+                         <h4  style="text-align: center; color:gray;">Осталось:{{ post.quantity }}</h4></div>
                   {% if user.is_superuser %}   <div> <a href="{% url 'onelessproductmanage' pid=post.id %}" class="btn btn-default">‒</a>
                      <a href="{% url 'onemoreproductmanage' pid=post.id %}" class="btn btn-default">+</a></div>
                             {% endif %}
@@ -131,22 +132,22 @@
                      <a href="{% url 'onemoreproduct' pid=post.id %}" class="btn btn-default">+</a></div>
                             {% endif %}
                       
-                         <div style=bottom:0;"><h3 class="price">{{ post.price }}₽</h3><a href="{% url 'addtocart' id=post.id %}" type ="submit" class="submit">Подробнее</a>{% if user.is_provider %}
+                         <div style=bottom:0;"><h3 class="price">{{ post.price }}₽</h3><br><a href="{% url 'addtocart' id=post.id %}" type ="submit" class="submit">Подробнее</a>{% if user.is_provider %}
 <a href="{% url 'delproductmanage' did=post.id %}" type="submit" class="submit_cart">Удалить</a>{% endif %}{% if user.is_staff %}
-<a href="{% url 'delproductmanage' did=post.id %}" type="submit" class="submit_cart">Удалить</a>{% endif %}</div></div>
+<a href="{% url 'delproductmanage' did=post.id %}" type="submit" class="submit_cart">Удалить</a>{% endif %}<br><br></div>
                          
 
                      </div> 
                  
             {% endfor %}
- {% if user.is_provider %}<div class="product_preview"><a href="{% url 'newproduct' %}">
+ {% if user.is_provider %}<div class="product_preview"><a class="newproduct" href="{% url 'newproduct' %}">
 <h1>+</h1>
 </a></div>
            </div>  {% endif %}
 
- {% if user.is_superuser %}<div class="product_preview"><a href="{% url 'newproduct' %}">
+ {% if user.is_superuser %}<div class="product_preview"><a class="newproduct" href="{% url 'newproduct' %}">
 <h1 class="newproduct">+</h1>
-</a></div>
+</a><br><br></div>
            </div>  {% endif %}
         </div> 
     </div>   

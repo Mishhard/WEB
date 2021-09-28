@@ -17,11 +17,14 @@
              {% for post_1 in posts_all %} 
       
                          {% if post_1.id == post.post_id %} 
-           <h3> Для оплаты заказа, пожалуйста, переведите {% widthratio post_1.price 1 post.qnt %} ₽ с комментарием "{{post.id}}"</h3>
 
-                             <h3>{{post_1.title}}</h3> 
-                             {% if post.ready %}<h5>Статус: Оплачен</h5> 
-                     {% else %}<h5>Статус: Не оплачен</h5>{% endif %}
+
+                             <h3>Наименование: {{ post_1.title}}</h3> 
+ <h4>Количество: {{ post.qnt}}</h4> 
+ <h4>Сумма: {% widthratio post_1.price 1 post.qnt %}</h4> 
+                             {% if post.ready %}<h5>Статус: Оплачен</h4> 
+                     {% else %}<h4>Статус: Не оплачен</h4>{% endif %}
+<h4> Email: {{bob.email}} </h4>
                              <img class="card-img-top1" src="{{post_1.image.url }}" alt="Изображение"  /> 
                          {% endif %} 
                      {% endfor %} 
@@ -30,7 +33,7 @@
         {{ orderform.as_p }}
 
 
-      <br>    <h3> Email: {{bob.email}} </h3> <br> <a href="{% url 'allorders' %}" type="submit">Вернуться</a> 
+      <br>     <br> <a href="{% url 'allorders' %}" type="submit">Вернуться</a> 
             <div class="blog_comment">
 
  

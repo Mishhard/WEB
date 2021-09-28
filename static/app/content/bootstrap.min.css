@@ -1535,7 +1535,8 @@ textarea.input-lg {
     background-color: #fff;
     border-color: #fff;
     margin-top: -120px;
-    margin-left: 660px
+    margin-left: 660px;
+    text-shadow: none;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
     color: #000;
@@ -3631,7 +3632,8 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
         font-weight: bold;
         margin-top: 25px;
         margin-left: 160px;
-        color: #3d23ac;
+        color: #fff;
+        text-shadow: 0px 0px 5px rgb(0 45 189 / 60%), 0px 0px 5px rgb(0 45 189 / 60%), 0px 0px 5px rgb(0 45 189 / 60%), 0px 0px 5px rgb(0 45 189 / 60%);
         font-size: 25px
     }
 .container .jumbotron {
@@ -3654,6 +3656,7 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
         color: #fff;
         margin-top: 0px;
         margin-left: -40px;
+        text-shadow: 0px 0px 10px rgb(230 105 16 / 60%), 0px 0px 10px rgb(230 105 16 / 60%), 0px 0px 10px rgb(230 105 16 / 60%), 0px 0px 10px rgb(230 105 16 / 60%);
     }
 
     .thumbnail {
@@ -5597,7 +5600,7 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             box-shadow: 0 0 10px 0px rgb(0 45 189);
             width: 27%;
             margin: 30px;
-            height: 460px;
+            height: ;
             float: left;
             display: flex;
             justify-content: center;
@@ -5608,28 +5611,30 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
 
         .card-img-top {
             border-radius: 0px;
-            max-heigt: 200px;
+
             width: 100%;
-            position: absolute;
-            top: 0;
-            width: 100%;
+
+            left: 0;
+            right:0;
+            margin:auto;
             height: 200px;
-            filter: blur(10px);
+            filter: blur(30px);
         }
 
         .card-img-top2 {
             border-radius: 0px;
-            max-heigt: 200px;
-            width: 100%;
+            max-height: 200px;
             position: absolute;
-            top: 0;
-        
-            height: 200px;
+            max-width:100%;
+            right: 0;
+        left:0;
+        margin:auto;
   ;
         }
 
         .card-img-top1 {
-            height:300px;
+            max-height:300px;
+            left:0;
         }
 
         .product_preview {
@@ -5643,6 +5648,7 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             flex-direction: column;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
         .product_preview2 {
@@ -5659,8 +5665,12 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             position: relative;
         }
 
-        .product_preview a:hover {
-            color: rgb(230 105 16);
+        .newproduct :hover {
+            color: #fff;
+            text-shadow: 0px 0px 10px rgb(230 105 16), 0px 0px 10px rgb(230 105 16), 0px 0px 10px rgb(230 105 16), 0px 0px 10px rgb(230 105 16);
+        }
+        .newproduct {
+           width:100%;
         }
 
         .btn round {
@@ -5673,13 +5683,14 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             box-shadow: 0 0 10px 0px rgb(0 45 189);
             width: 27%;
             margin: 3%;
-            height: 520px;
             float: left;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             text-align: center;
+            overflow: hidden;
+            position: relative;
         }
 
         .order_preview_complete {
@@ -5691,6 +5702,7 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            position: relative;
         }
 
         h2.nomore {
@@ -5703,7 +5715,12 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
         }
 
         .product_preview h1 {
-            font-size: 360px;
+            font-size: 350px;
+            padding-top: 60px;
+            margin: 0;
+            height: 474px;
+            font-size: 350px;
+
         }
 
         .product_preview a {

@@ -58,7 +58,7 @@ class Catalog(models.Model):
      posted = models.DateTimeField(default = datetime.now(), db_index = True, verbose_name = "Опубликована") 
      image = models.FileField(default = 'temp.jpg', verbose_name ="Путь к изображению")
      author = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL, verbose_name = "Автор")
-     stonks = models.IntegerField(default=0, verbose_name = "Цена")
+     stonks = models.IntegerField(default=0, verbose_name = "Выручка")
  
      def get_absolute_url(self): 
         return reverse("Catalog", args=[str(self.id)]) 

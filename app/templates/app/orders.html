@@ -12,9 +12,11 @@
       
                          {% if post_1.id == post.post_id %} 
                              <h3 class="order">{{post_1.title}}</h3> 
-                             <h4>Цена: {{post_1.price}}₽</h4>
+           
                              <h4>Количество: {{post.qnt}}</h4>
-                             <img class="card-img-top" src="{{post_1.image.url }}" alt="Изображение" width="100%" height="200" />
+ <h4>Сумма: {% widthratio post_1.price 1 post.qnt %}</h4>
+                           <div style="top:0;width:100%;height:200px;overflow: hidden;;display: flex;
+  align-items: center;"> <img class="card-img-top" src="{{post_1.image.url }}" alt="Изображение"  /> <img class="card-img-top2" src="{{post_1.image.url }}" alt="Изображение"  /> </div>
                              Оплачен: {{ post.date }}
                          {% endif %} 
                     

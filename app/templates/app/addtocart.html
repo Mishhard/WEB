@@ -9,7 +9,7 @@
         {% csrf_token %}
         <div>
             {% for post in posts %}
-            <div style="display: inline-block; float: left; padding-right: 20px;"><img class="card-img-top" src="{{post.image.url }}" alt="Изображение" width="333.3333333333333" height="195" /></div>
+            <div style="display: inline-block; float: left; padding-right: 20px;"><img class="card-img-top1" src="{{post.image.url }}" alt="Изображение" width="333.3333333333333" /></div>
             <div style="display: inline-block; float: left;"></div><h3>Наименование: {{ post.title }}</h3>
             <h3>Описание: {{ post.description }}</h3>
             <h3>Стоимость: {{ post.price }}₽</h3><br />
