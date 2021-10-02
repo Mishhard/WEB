@@ -23,6 +23,7 @@ from .forms import ProductForm
 from .forms import OrderForm
 from .forms import EmailForm
 from .forms import RequisitesForm
+from django.core.mail import send_mail
 
 def has_group(user, group_name):
     group = Group.objects.get(name=group_name)
@@ -80,12 +81,16 @@ def pool(request):
             data['name'] = form.cleaned_data['name']
             data['gender'] = gender[form.cleaned_data['gender'] ]
             data['internet'] = internet[form.cleaned_data['internet'] ]
+            data['message'] = form.cleaned_data['message']
+            toemail = form.cleaned_data['email']
+            mesage = 'Что случилось: ' + data['gender'] + '\nКем Вы являетесь: ' + data['internet'] + '\nСуть вопроса: ' + data['message'] + '\nE-mail: ' + toemail
+            send_mail('Лучик: ' + data['name'], mesage, 'mishhard99@mail.ru', ['mishhard@yandex.ru'], fail_silently=False)
             if(form.cleaned_data['notice'] == True):
                 data['notice'] = 'Да'
+                send_mail('Лучик: ' + data['name'], mesage, 'mishhard99@mail.ru', [toemail], fail_silently=False)
             else:
                 data['notice'] = 'Нет'
             data['email'] = form.cleaned_data['email']
-            data['message'] = form.cleaned_data['message']
             form = None
     else:
         form = AnketaForm()
@@ -115,12 +120,14 @@ def links(request):
 def blog(request):
     """Renders the contact page."""
     posts = Blog.objects.all()
+    price_sum = posts.count
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/blog.html',
         {
             'title':'Блог',
+            'price_sum': price_sum,                
             'posts' : posts,
             'year':datetime.now().year,
         }
@@ -297,7 +304,8 @@ def finances(request):
 def cart(request): 
     posts = Orders.objects.filter(author = request.user, ready=False) 
     posts_all = Catalog.objects.all() 
-    price_sum = sum(post.qnt for post in posts)
+    price_sum = Orders.objects.filter(author = request.user, ready=False).count 
+    price_summ = sum(post.qnt for post in posts)
     context = {
                 'price_sum': price_sum,                
                 }
@@ -347,7 +355,6 @@ def addtocart(request,id):
 
 def payed(request,bid): 
     query = Orders.objects.get(id = bid)
-    query.on_processing = True
     bob = User.objects.get(id=request.user.id)
     product = Catalog.objects.get(id = query.post_id)
     product.quantity = product.quantity - query.qnt
@@ -361,7 +368,18 @@ def payed(request,bid):
                  'year': datetime.now().year, 
              } 
          )
+    elif query.on_processing == True:
+            return render( 
+             request, 
+                 'app/Nope.html', 
+                 { 
+                     'message': 'Мы уже проверяем оплату заказа', 
+                       'title': 'Спасибо', 
+                     'year': datetime.now().year, 
+                 } 
+                 )
     else:
+        query.on_processing = True
         query.save()
         product.save()
     return render( 
@@ -386,7 +404,7 @@ def paying(request,bid):
          request, 
              'app/Nope.html', 
              { 
-                 'message': 'Доступное количество товара: ' + str(product.quantity), 
+                 'message': 'Доступное количество товара: ' + str(product.quantity + query.qnt), 
                    'title': 'Ошибка', 
                  'year': datetime.now().year, 
              } 
@@ -497,7 +515,7 @@ def onemoreproduct(request,pid):
     assert isinstance(request, HttpRequest)
 
     product = Catalog.objects.get(id = pid)
-    if product.author == request.User :
+    if product.author == request.user :
         product.quantity =   product.quantity + 1
         product.save()
         return redirect('home')
@@ -516,7 +534,7 @@ def onelessproduct(request,pid):
     assert isinstance(request, HttpRequest)
 
     product = Catalog.objects.get(id = pid)
-    if product.author == request.User :
+    if product.author == request.user :
         product.quantity =   product.quantity - 1
         product.save()
         return redirect('home')
@@ -622,6 +640,10 @@ def delcartmanage(request,did):
 def completeorders(request): 
     posts = Orders.objects.filter(author = request.user, ready=True) 
     posts_all = Catalog.objects.all() 
+    price_sum = Orders.objects.filter(author = request.user, ready=True).count
+    context = {
+                'price_sum': price_sum,                
+                }
     assert isinstance(request, HttpRequest) 
     return render( 
         request, 
@@ -631,6 +653,7 @@ def completeorders(request):
                 'posts': posts, 
                 'posts_all': posts_all, 
                 'year': datetime.now().year, 
+                 'price_sum': price_sum,
             } 
         ) 
 
@@ -639,20 +662,40 @@ def allorders(request):
     """Renders the contact page."""
     posts = Orders.objects.all()
     posts_all = Catalog.objects.all() 
+    if request.user.is_provider == True:
+        b = Catalog.objects.all().filter(author = request.user)
+        bb = sum((count.author.id)/request.user.id for count in b)
+        price_sum = 0
+        i = 0
+        count = 0
+        countt = 0
+        summm = 0
+        while i < bb:
+            c = b[i]
+            d = c.id
+            counts = Orders.objects.filter(post = d)
+            summ = int(sum((count.id/count.id) for count in counts))
+            i += 1
+            price_sum += summ
+        posts_all = Catalog.objects.filter(author = request.user.id)
+    else:
+        price_sum = Orders.objects.all().count
     me = request.user
-    price_sum = sum(post.qnt for post in posts)
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/allorders.html',
-        {
-            'title':'Управление заказами',
-            'posts' : posts,
-            'me' : me,
-            'posts_all' : posts_all,
-            'year':datetime.now().year,
-        }
-    )
+    return render(    
+     request,
+     'app/allorders.html',
+                 {
+                'title':'Управление заказами',
+                'posts' : posts,
+                'me' : me,
+                'posts_all' : posts_all,
+                'year':datetime.now().year,
+                'price_sum': price_sum,
+                }
+            )
+        
+
 
 def newproduct(request):
     assert isinstance(request, HttpRequest)

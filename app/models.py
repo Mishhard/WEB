@@ -51,8 +51,8 @@ admin.site.register(Blog)
 admin.site.register(Comment)
 
 class Catalog(models.Model): 
-     title = models.CharField(max_length = 24, unique_for_date = "posted", verbose_name = "Наименование") 
-     description = models.TextField(max_length = 60, verbose_name = "Описание")
+     title = models.CharField(max_length = 60, unique_for_date = "posted", verbose_name = "Наименование") 
+     description = models.TextField(max_length = 240, verbose_name = "Описание")
      quantity = models.IntegerField(verbose_name = "Количество")
      price = models.IntegerField(default = 0, verbose_name = "Цена")
      posted = models.DateTimeField(default = datetime.now(), db_index = True, verbose_name = "Опубликована") 

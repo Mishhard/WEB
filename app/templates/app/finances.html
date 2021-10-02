@@ -3,7 +3,7 @@
 {% block content %}
 {% load static %}
 
-<a href="{% url 'cart' %}"><h3>Корзина</h3></a><a href="{% url 'completeorders' %}"><h3 class="h33">Заказы</h3></a><a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a><h3 class="h3h">Финансы</h3>
+<a href="{% url 'cart' %}"><h3>Корзина</h3></a><a href="{% url 'completeorders' %}"><h3 class="h33">Заказы</h3></a><a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3> </a><h3 class="h3h">Финансы</h3>
 <div class="row">
 <h3>{{ message }}</h3><br />
 <h4>{{price_sum}}</h4>

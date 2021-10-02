@@ -2,17 +2,16 @@
  
 {% block content %} 
 {% load static %} 
-<h3 class="h3h">{{ title }}({{price_sum}})</h3> <a href="{% url 'completeorders' %}"><h3>Заказы</h3></a> {% if user.is_superuser %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>
-{% endif %}{% if user.is_provider %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>{% endif %}
+<h3 class="h3h">{{ title }}</h3><a href="{% url 'completeorders' %}"><h3>Заказы</h3></a>{% if user.is_superuser %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>
+{% endif %}{% if user.is_provider %}<a href="{% url 'allorders' %}"><h3 class="h33">Управление заказами</h3></a><a href="{% url 'finances' %}"><h3 class="h33">Финансы</h3></a>{% endif %}<h2 class="sum">{{price_sum}}</h2>
          <div class="row"> 
              {% for post in posts %}
-
                    <div class="order_preview"> 
                      {% for post_1 in posts_all %} {% widthratio post_1.price 1 post.qnt as width %} 
      
                          {% if post_1.id == post.post_id %}  
 {% widthratio post_1.price 1 post.qnt as width %}    
-                             <h3>{{post_1.title}}</h3> 
+                             <h3 class="post_title">{{post_1.title}}</h3> 
       
 
                      <h5> {% if post.ready %}Статус: Оплачен{% else %}Статус: Не оплачен{% endif %}{% if post.on_processing %}(платеж на проверке)

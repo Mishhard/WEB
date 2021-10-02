@@ -115,3 +115,9 @@ STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'mishhard99@mail.ru'
+EMAIL_HOST_PASSWORD = '6x9P5Zry1gxksbNckj7H'

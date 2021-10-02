@@ -573,7 +573,7 @@ pre code {
     border-radius: 50px;
     width: 100%;
     box-shadow: 0 0 10px 0px rgb(230 105 16);
-    z-index: 1;
+    z-index: 12;
     padding:40px;
     background-color:#fff;
 }
@@ -5600,7 +5600,7 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             box-shadow: 0 0 10px 0px rgb(0 45 189);
             width: 27%;
             margin: 30px;
-            height: ;
+            height:;
             float: left;
             display: flex;
             justify-content: center;
@@ -5611,12 +5611,10 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
 
         .card-img-top {
             border-radius: 0px;
-
             width: 100%;
-
             left: 0;
-            right:0;
-            margin:auto;
+            right: 0;
+            margin: auto;
             height: 200px;
             filter: blur(30px);
         }
@@ -5625,16 +5623,16 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             border-radius: 0px;
             max-height: 200px;
             position: absolute;
-            max-width:100%;
+            max-width: 100%;
             right: 0;
-        left:0;
-        margin:auto;
-  ;
+            left: 0;
+            margin: auto;
+            ;
         }
 
         .card-img-top1 {
-            max-height:300px;
-            left:0;
+            max-height: 300px;
+            left: 0;
         }
 
         .product_preview {
@@ -5669,8 +5667,9 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             color: #fff;
             text-shadow: 0px 0px 10px rgb(230 105 16), 0px 0px 10px rgb(230 105 16), 0px 0px 10px rgb(230 105 16), 0px 0px 10px rgb(230 105 16);
         }
+
         .newproduct {
-           width:100%;
+            width: 100%;
         }
 
         .btn round {
@@ -5703,6 +5702,21 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             align-items: center;
             flex-direction: column;
             position: relative;
+            top: 24px;
+        }
+
+        .manage_order_preview {
+            box-shadow: 0 0 10px 0px rgb(0 45 189);
+            width: 27%;
+            margin: 3%;
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
         }
 
         h2.nomore {
@@ -5714,13 +5728,26 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
             text-align: center;
         }
 
+        .submit_order_manage {
+            padding: 10px !important;
+            font-size: 14px !important;
+            text-align: center;
+        }
+
+            .submit_order_manage:hover {
+                padding: 10px !important;
+                font-size: 14px !important;
+                text-align: center;
+                border: 0px;
+                border: 2px solid #fff !important;
+            }
+
         .product_preview h1 {
             font-size: 350px;
             padding-top: 60px;
             margin: 0;
             height: 474px;
             font-size: 350px;
-
         }
 
         .product_preview a {
