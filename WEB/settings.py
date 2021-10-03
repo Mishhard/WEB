@@ -117,7 +117,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 EMAIL_USE_SSL = True
-EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'mishhard99@mail.ru'
-EMAIL_HOST_PASSWORD = '6x9P5Zry1gxksbNckj7H'
+EMAIL_HOST_USER = 'mishhard'
+EMAIL_HOST_PASSWORD = 'ldzxxwsjhviluypb'

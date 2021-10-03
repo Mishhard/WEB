@@ -84,10 +84,10 @@ def pool(request):
             data['message'] = form.cleaned_data['message']
             toemail = form.cleaned_data['email']
             mesage = 'Что случилось: ' + data['gender'] + '\nКем Вы являетесь: ' + data['internet'] + '\nСуть вопроса: ' + data['message'] + '\nE-mail: ' + toemail
-            send_mail('Лучик: ' + data['name'], mesage, 'mishhard99@mail.ru', ['mishhard@yandex.ru'], fail_silently=False)
+            send_mail('Лучик: ' + data['name'], mesage, 'mishhard@gmail.ru', ['mishhard@yandex.ru'], fail_silently=False)
             if(form.cleaned_data['notice'] == True):
                 data['notice'] = 'Да'
-                send_mail('Лучик: ' + data['name'], mesage, 'mishhard99@mail.ru', [toemail], fail_silently=False)
+                send_mail('Лучик: ' + data['name'], mesage, 'mishhard@gmail', [toemail], fail_silently=False)
             else:
                 data['notice'] = 'Нет'
             data['email'] = form.cleaned_data['email']
@@ -678,6 +678,8 @@ def allorders(request):
             i += 1
             price_sum += summ
         posts_all = Catalog.objects.filter(author = request.user.id)
+        if price_sum <1:
+           posts = None
     else:
         price_sum = Orders.objects.all().count
     me = request.user
