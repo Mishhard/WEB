@@ -146,7 +146,7 @@ def registration(request):
          reg_f.date_joined = datetime.now() # дата 
          reg_f.last_login = datetime.now() # дата последней 
          reg_f.save() # сохраняем изменения после добавления 
-         return redirect('home') # переадресация на главную страницу после 
+         return redirect('login') # переадресация на главную страницу после 
     else:
        regform = UserCreationForm() # создание объекта формы для ввода данных нового 
     return render(
@@ -172,7 +172,7 @@ def registration_provider(request):
          reg_f.date_joined = datetime.now() # дата 
          reg_f.last_login = datetime.now() # дата последней 
          reg_f.save() # сохраняем изменения после добавления 
-         return redirect('home') # переадресация на главную страницу после 
+         return redirect('login') # переадресация на главную страницу после 
     else:
        regform = UserCreationForm() # создание объекта формы для ввода данных нового 
     return render(
